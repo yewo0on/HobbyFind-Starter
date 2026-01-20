@@ -20,8 +20,8 @@ const config = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: '#FF385C', // 메인 포인트 컬러
+          foreground: '#FFFFFF',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -47,6 +47,17 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        // 디자인에서 자주 쓰이는 서브 팔레트
+        primarySoft: '#FFE4E8',
+        primarySoftAlt: '#FFF3E0',
+        blueSoft: '#DBEAFE',
+        purpleSoft: '#EDE9FE',
+        greenSoft: '#DCFCE7',
+        grayBg: '#F7F7F7',
+        grayBorder: '#E5E7EB',
+        textPrimary: '#222222',
+        textSecondary: '#717171',
+        white: '#FFFFFF',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -66,6 +77,7 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        pulse: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },

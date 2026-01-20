@@ -1,168 +1,175 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { CheckCircle, Github, Copy, Sparkles } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
-import axios from 'axios';
+import Link from 'next/link';
+import { ArrowRight, Sparkles, Palette, Brain, Dumbbell } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const PACKAGE_NAME = '@easynext/cli';
-const CURRENT_VERSION = 'v0.1.38';
-
-function latestVersion(packageName: string) {
-  return axios
-    .get('https://registry.npmjs.org/' + packageName + '/latest')
-    .then((res) => res.data.version);
-}
+import { HOBBIES } from '@/constants/hobbies';
+import TopBar from '@/components/TopBar';
+import HobbyGrid from '@/components/HobbyGrid';
 
 export default function Home() {
-  const { toast } = useToast();
-  const [latest, setLatest] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchLatestVersion = async () => {
-      try {
-        const version = await latestVersion(PACKAGE_NAME);
-        setLatest(`v${version}`);
-      } catch (error) {
-        console.error('Failed to fetch version info:', error);
-      }
-    };
-    fetchLatestVersion();
-  }, []);
-
-  const handleCopyCommand = () => {
-    navigator.clipboard.writeText(`npm install -g ${PACKAGE_NAME}@latest`);
-    toast({
-      description: 'Update command copied to clipboard',
-    });
-  };
-
-  const needsUpdate = latest && latest !== CURRENT_VERSION;
-
   return (
-    <div className="flex min-h-screen relative overflow-hidden">
-      {/* Main Content */}
-      <div className="min-h-screen flex bg-gray-100">
-        <div className="flex flex-col p-5 md:p-8 space-y-4">
-          <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter !leading-tight text-left">
-            Easiest way to start
-            <br /> Next.js project
-            <br /> with Cursor
-          </h1>
+    <div className="min-h-screen bg-white">
+      <TopBar />
 
-          <p className="text-lg text-muted-foreground">
-            Get Pro-created Next.js bootstrap just in seconds
-          </p>
+      <main>
+        <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden px-6 py-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50" />
+          
+          <div className="absolute left-10 top-20 h-64 w-64 rounded-full bg-pink-200 opacity-30 blur-3xl animate-pulse" style={{ animationDelay: '0s' }} />
+          <div className="absolute right-20 top-40 h-80 w-80 rounded-full bg-purple-200 opacity-30 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-20 left-1/3 h-72 w-72 rounded-full bg-blue-200 opacity-30 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
 
-          <div className="flex items-center gap-2">
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="gap-2 w-fit rounded-full px-4 py-2 border border-black"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="relative z-10 mx-auto max-w-4xl text-center"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+              className="mb-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 px-5 py-2.5 shadow-lg"
             >
-              <a href="https://github.com/easynextjs/easynext" target="_blank">
-                <Github className="w-4 h-4" />
-                GitHub
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="gap-2 w-fit rounded-full px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white"
+              <Sparkles className="h-5 w-5 text-white" />
+              <span className="text-sm font-semibold text-white">
+                오늘부터 시작하는 나만의 이야기
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              className="mb-6 text-4xl font-bold text-textPrimary sm:text-5xl md:text-6xl lg:text-7xl"
             >
-              <a href="https://easynext.org/premium" target="_blank">
-                <Sparkles className="w-4 h-4" />
-                Premium
-              </a>
-            </Button>
-          </div>
-          <Section />
-        </div>
-      </div>
+              평범한 일상에
+              <br />
+              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+                색을 더하다
+              </span>
+            </motion.h1>
 
-      <div className="min-h-screen ml-16 flex-1 flex flex-col items-center justify-center space-y-4">
-        <div className="flex flex-col items-center space-y-2">
-          <p className="text-muted-foreground">
-            Current Version: {CURRENT_VERSION}
-          </p>
-          <p className="text-muted-foreground">
-            Latest Version:{' '}
-            <span className="font-bold">{latest || 'Loading...'}</span>
-          </p>
-        </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+              className="mx-auto mb-10 max-w-2xl text-base text-textSecondary sm:text-lg md:text-xl"
+            >
+              몸을 움직이는 즐거움, 머리를 쓰는 재미, 마음을 표현하는 기쁨.
+              <br />
+              당신의 라이프스타일에 딱 맞는 취미를 만나보세요!
+            </motion.p>
 
-        {needsUpdate && (
-          <div className="flex flex-col items-center space-y-2">
-            <p className="text-yellow-600">New version available!</p>
-            <p className="text-sm text-muted-foreground">
-              Copy and run the command below to update:
-            </p>
-            <div className="relative group">
-              <pre className="bg-gray-100 p-4 rounded-lg">
-                npm install -g {PACKAGE_NAME}@latest
-              </pre>
-              <button
-                onClick={handleCopyCommand}
-                className="absolute top-2 right-2 p-2 opacity-0 group-hover:opacity-100 transition-opacity"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+              className="mb-12 flex flex-wrap items-center justify-center gap-4"
+            >
+              <div className="flex items-center gap-2 rounded-full bg-pink-100 px-4 py-2 shadow-sm">
+                <Dumbbell className="h-5 w-5 text-pink-600" />
+                <span className="text-sm font-medium text-pink-700">운동형</span>
+              </div>
+              <div className="flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 shadow-sm">
+                <Brain className="h-5 w-5 text-blue-600" />
+                <span className="text-sm font-medium text-blue-700">지능형</span>
+              </div>
+              <div className="flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 shadow-sm">
+                <Palette className="h-5 w-5 text-purple-600" />
+                <span className="text-sm font-medium text-purple-700">예술형</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
+            >
+              <Link
+                href="#hobbies"
+                className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl active:scale-95"
               >
-                <Copy className="w-4 h-4" />
-              </button>
+                취미 탐색하기
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        <section
+          id="hobbies"
+          className="relative mx-auto max-w-7xl px-6 py-16"
+        >
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-pink-50 via-purple-50 to-blue-50 rounded-3xl" />
+          
+          <div className="relative text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span className="text-xs font-medium text-textSecondary">
+                카테고리별 탐색
+              </span>
+            </div>
+            
+            <h2 className="mb-4 text-2xl font-bold text-textPrimary sm:text-3xl">
+              관심 있는 취미를 더 집중해서 살펴보세요
+            </h2>
+            <p className="mb-8 text-base text-textSecondary sm:text-lg">
+              운동형, 지능형, 예술형 카테고리 페이지에서 원하는 취미를 찾아보세요
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/sports"
+                className="group flex items-center gap-3 rounded-2xl bg-gradient-to-br from-pink-100 to-pink-200 px-6 py-4 shadow-md transition-all hover:scale-105 hover:shadow-lg"
+              >
+                <div className="rounded-full bg-pink-500 p-2">
+                  <Dumbbell className="h-5 w-5 text-white" />
+                </div>
+                <div className="text-left">
+                  <div className="text-sm font-medium text-pink-700">운동형</div>
+                  <div className="text-xs text-pink-600">6가지 취미</div>
+                </div>
+                <ArrowRight className="ml-2 h-4 w-4 text-pink-600 transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/intellectual"
+                className="group flex items-center gap-3 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 px-6 py-4 shadow-md transition-all hover:scale-105 hover:shadow-lg"
+              >
+                <div className="rounded-full bg-blue-500 p-2">
+                  <Brain className="h-5 w-5 text-white" />
+                </div>
+                <div className="text-left">
+                  <div className="text-sm font-medium text-blue-700">지능형</div>
+                  <div className="text-xs text-blue-600">6가지 취미</div>
+                </div>
+                <ArrowRight className="ml-2 h-4 w-4 text-blue-600 transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/art"
+                className="group flex items-center gap-3 rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200 px-6 py-4 shadow-md transition-all hover:scale-105 hover:shadow-lg"
+              >
+                <div className="rounded-full bg-purple-500 p-2">
+                  <Palette className="h-5 w-5 text-white" />
+                </div>
+                <div className="text-left">
+                  <div className="text-sm font-medium text-purple-700">예술형</div>
+                  <div className="text-xs text-purple-600">6가지 취미</div>
+                </div>
+                <ArrowRight className="ml-2 h-4 w-4 text-purple-600 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
-        )}
-      </div>
+        </section>
+
+        <section className="bg-grayBg">
+          <HobbyGrid hobbies={HOBBIES} />
+        </section>
+      </main>
     </div>
-  );
-}
-
-function Section() {
-  const items = [
-    { href: 'https://nextjs.org/', label: 'Next.js' },
-    { href: 'https://ui.shadcn.com/', label: 'shadcn/ui' },
-    { href: 'https://tailwindcss.com/', label: 'Tailwind CSS' },
-    { href: 'https://www.framer.com/motion/', label: 'framer-motion' },
-    { href: 'https://zod.dev/', label: 'zod' },
-    { href: 'https://date-fns.org/', label: 'date-fns' },
-    { href: 'https://ts-pattern.dev/', label: 'ts-pattern' },
-    { href: 'https://es-toolkit.dev/', label: 'es-toolkit' },
-    { href: 'https://zustand.docs.pmnd.rs/', label: 'zustand' },
-    { href: 'https://supabase.com/', label: 'supabase' },
-    { href: 'https://react-hook-form.com/', label: 'react-hook-form' },
-  ];
-
-  return (
-    <div className="flex flex-col py-5 md:py-8 space-y-2 opacity-75">
-      <p className="font-semibold">What&apos;s Included</p>
-
-      <div className="flex flex-col space-y-1 text-muted-foreground">
-        {items.map((item) => (
-          <SectionItem key={item.href} href={item.href}>
-            {item.label}
-          </SectionItem>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function SectionItem({
-  children,
-  href,
-}: {
-  children: React.ReactNode;
-  href: string;
-}) {
-  return (
-    <a
-      href={href}
-      className="flex items-center gap-2 underline"
-      target="_blank"
-    >
-      <CheckCircle className="w-4 h-4" />
-      <p>{children}</p>
-    </a>
   );
 }
