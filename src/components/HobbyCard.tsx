@@ -26,13 +26,13 @@ export default function HobbyCard({ hobby }: HobbyCardProps) {
         <div className="mb-2">
           <span
             className={cn(
-              'inline-block rounded-full px-3 py-1 text-xs font-semibold',
+              'inline-block rounded-full border border-grayBorder px-3 py-1 text-xs font-semibold',
               hobby.category === 'sports' &&
-                'bg-pink-100 text-pink-700 ring-1 ring-pink-200',
+                'bg-sports-100 text-sports-700',
               hobby.category === 'intellectual' &&
-                'bg-blue-100 text-blue-700 ring-1 ring-blue-200',
+                'bg-intellectual-100 text-intellectual-700',
               hobby.category === 'art' &&
-                'bg-purple-100 text-purple-700 ring-1 ring-purple-200',
+                'bg-art-100 text-art-700',
             )}
           >
             {CATEGORY_LABEL[hobby.category]}

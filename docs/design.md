@@ -1,4 +1,4 @@
-# HobbyFind Design Guide
+# Design Guide — HobbyFind 
 
 *(Inspired by Airbnb Design System)*
 
@@ -88,15 +88,15 @@ Main Content (Hobby Grid)
 * 중앙 정렬
 * 큰 타이포 + 여백 강조
 * framer-motion을 이용한 fade in 애니메이션 적용
-* 그라데이션 배경 및 애니메이션 블러 효과
+* 단색 배경 및 애니메이션 블러 효과
 
 ```html
 <section class="relative flex min-h-[60vh] items-center justify-center overflow-hidden px-6 py-20">
-  <div class="absolute inset-0 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50" />
-  <!-- 애니메이션 블러 효과 -->
+  <div class="absolute inset-0 bg-grayBg" />
+  <!-- 애니메이션 블러 효과 (primarySoft 사용) -->
   <div class="relative z-10 mx-auto max-w-4xl text-center">
     <!-- 배지 -->
-    <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 px-5 py-2.5 shadow-lg">
+    <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 shadow-lg">
       <Icon class="h-5 w-5 text-white" />
       <span class="text-sm font-semibold text-white">오늘부터 시작하는 나만의 이야기</span>
     </div>
@@ -104,7 +104,7 @@ Main Content (Hobby Grid)
     <h1 class="mb-6 text-4xl font-bold text-textPrimary sm:text-5xl md:text-6xl lg:text-7xl">
       평범한 일상에
       <br />
-      <span class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+      <span class="text-primary">
         색을 더하다
       </span>
     </h1>
@@ -114,8 +114,8 @@ Main Content (Hobby Grid)
       <br />
       당신의 라이프스타일에 딱 맞는 취미를 만나보세요!
     </p>
-    <!-- 카테고리 배지 -->
-    <!-- CTA 버튼 -->
+    <!-- 카테고리 배지 (primarySoft 배경, primary 아이콘) -->
+    <!-- CTA 버튼 (bg-primary) -->
   </div>
 </section>
 ```
@@ -128,7 +128,7 @@ Main Content (Hobby Grid)
 
 ```html
 <section class="relative mx-auto max-w-7xl px-6 py-16">
-  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-pink-50 via-purple-50 to-blue-50 rounded-3xl" />
+  <div class="absolute inset-0 -z-10 bg-primarySoft rounded-3xl" />
   <div class="relative text-center">
     <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
       <Icon class="h-4 w-4 text-primary" />
@@ -138,7 +138,7 @@ Main Content (Hobby Grid)
     <p class="mb-8 text-base text-textSecondary">
       운동형, 지능형, 예술형 카테고리 페이지에서 원하는 취미를 찾아보세요
     </p>
-    <!-- 카테고리별 카드 링크 -->
+    <!-- 카테고리별 카드 링크 (white 배경, grayBorder 테두리, primary 아이콘) -->
     <div class="flex flex-wrap items-center justify-center gap-4">
       <!-- 운동형, 지능형, 예술형 카테고리 링크 카드 -->
     </div>
@@ -150,33 +150,33 @@ Main Content (Hobby Grid)
 
 ### 3-2. 카테고리 페이지
 
-* 각 카테고리별 **컬러풀한 Hero 섹션**
-* 카테고리별 고유 색상 테마 적용
-* 탐색 집중 구조
+* 각 카테고리별 **고유 색상 테마를 가진 Hero 섹션**
+* Tailwind 팔레트 `sports-*`, `intellectual-*`, `art-*`를 사용
+* 탐색에 집중되는 단순 구조 유지
 
 **카테고리 Hero 섹션 구성:**
-* 그라데이션 배경 (카테고리별 색상)
-* 애니메이션 블러 효과 (펄스 애니메이션)
-* 배지 (카테고리 아이콘 + 서브타이틀)
-* 그라데이션 텍스트 제목
-* 카테고리별 설명 문구
+* 파스텔 톤 배경 (카테고리별 색상 계열)
+* 애니메이션 블러 효과 (배경과 같은 계열 색상, 펄스 애니메이션)
+* 배지 (카테고리 아이콘 + 서브타이틀, 카테고리 메인 컬러 배경)
+* 카테고리별 텍스트 색상 (예: `text-sports-600` 등)
+* 카테고리별 설명 문구 (textSecondary)
 
-**카테고리별 색상 테마:**
-* 운동형: 핑크/로즈/레드 그라데이션
-* 지능형: 블루/스카이/시안 그라데이션
-* 예술형: 퍼플/바이올렛/푸시아 그라데이션
+**카테고리별 색상 테마 예시:**
+* 운동형(sports): 파스텔 핑크 계열 배경 (`bg-sports-50`), 진한 핑크 배지 (`bg-sports-500`), 제목 색상 `text-sports-600`
+* 지능형(intellectual): 파스텔 블루 계열 배경 (`bg-intellectual-50`), 블루 배지 (`bg-intellectual-500`), 제목 색상 `text-intellectual-600`
+* 예술형(art): 파스텔 퍼플 계열 배경 (`bg-art-50`), 퍼플 배지 (`bg-art-500`), 제목 색상 `text-art-600`
 
 ```html
 <section class="relative flex min-h-[60vh] items-center justify-center overflow-hidden px-6 py-20">
-  <div class="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-50" />
-  <!-- 애니메이션 블러 효과 -->
+  <div class="absolute inset-0 bg-sports-50" />
+  <!-- 애니메이션 블러 효과: 같은 계열의 연한 색상 사용 -->
   <div class="relative z-10 mx-auto max-w-4xl text-center">
-    <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-400 to-rose-400 px-5 py-2.5 shadow-lg">
+    <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-sports-500 px-5 py-2.5 shadow-lg">
       <Icon class="h-5 w-5 text-white" />
       <span class="text-sm font-semibold text-white">활기찬 하루를 시작하세요</span>
     </div>
-    <h1 class="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
-      <span class="bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 bg-clip-text text-transparent">
+    <h1 class="mb-6 text-4xl font-bold text-textPrimary sm:text-5xl md:text-6xl lg:text-7xl">
+      <span class="text-sports-600">
         운동형 취미
       </span>
     </h1>
@@ -234,13 +234,27 @@ Main Content (Hobby Grid)
 
 * Airbnb 스타일 핵심 요소
 * **Hover 시 살짝 떠오르는 느낌**
+* 카테고리 배지: 카테고리별 색상 팔레트 사용
+  * 운동형: `bg-sports-100 text-sports-700`
+  * 지능형: `bg-intellectual-100 text-intellectual-700`
+  * 예술형: `bg-art-100 text-art-700`
 
 ```html
-<div class="rounded-xl border border-grayBorder p-4 
+<article class="rounded-xl border border-grayBorder bg-white p-4 
             transition hover:shadow-md hover:-translate-y-1">
-  <h3 class="font-medium text-textPrimary">클라이밍</h3>
-  <p class="mt-1 text-sm text-textSecondary">운동형</p>
-</div>
+  <!-- 이미지 영역 -->
+  <div class="relative mb-3 h-48 w-full overflow-hidden rounded-lg">
+    <img src="..." alt="..." class="object-cover" />
+  </div>
+  <div>
+    <!-- 카테고리 배지 (예: 운동형) -->
+    <span class="inline-block rounded-full bg-sports-100 text-sports-700 px-3 py-1 text-xs font-semibold border border-grayBorder">
+      운동형
+    </span>
+    <h3 class="mt-2 font-medium text-textPrimary">클라이밍</h3>
+    <p class="mt-1 text-sm text-textSecondary">설명 텍스트</p>
+  </div>
+</article>
 ```
 
 ---

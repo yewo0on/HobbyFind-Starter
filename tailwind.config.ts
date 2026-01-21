@@ -58,6 +58,31 @@ const config = {
         textPrimary: '#222222',
         textSecondary: '#717171',
         white: '#FFFFFF',
+        // 카테고리별 색상 팔레트 (sports / intellectual / art)
+        sports: {
+          50: '#FFF5F7',
+          100: '#FFE4E8',
+          200: '#FEB2C0',
+          500: '#FF385C',
+          600: '#E0245E',
+          700: '#B91C49',
+        },
+        intellectual: {
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          500: '#3B82F6',
+          600: '#2563EB',
+          700: '#1D4ED8',
+        },
+        art: {
+          50: '#F5F3FF',
+          100: '#EDE9FE',
+          200: '#DDD6FE',
+          500: '#8B5CF6',
+          600: '#7C3AED',
+          700: '#6D28D9',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
